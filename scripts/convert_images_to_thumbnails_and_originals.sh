@@ -18,6 +18,7 @@ THUMBNAIL_SIZE="200x200"
 QUALITY=100
 
 
+echo "Creating thumbnails for images in $IMAGE_DIR"
 for file in "$IMAGE_DIR"*; do
     echo "Processing file: $file"
     extension="${file##*.}"
@@ -31,5 +32,10 @@ for file in "$IMAGE_DIR"*; do
 
     echo "Created thumbnail: $thumbnail_file"
 done
-
 echo "Thumbnail creation complete."
+
+echo "Moving images from $IMAGE_DIR to original directory"
+for file in "$IMAGE_DIR"*; do
+    echo "Moving file: $file"
+    mv "$file" ./images/original/
+done
