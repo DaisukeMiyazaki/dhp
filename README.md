@@ -8,7 +8,7 @@ Currenly live on https://d3i2axt7bkh5tc.cloudfront.net/index.html
 This repository is designed to use out of the box with scripts for data preparation, static site generation as well as deployment to your site.
 
 1. You place your photos you want to share with the world under /images/pre_published
-2. Run a script that convert the images under /images/pre_published/ to thumbnails and move them to /images/original as well as /images/thumbnail
+2. Run a script that convert the images under /images/pre_published/ to images/thumbnails and move the pre_published images to /images/original
 
 3. Run a script to update an index.html that reflects all /images/original/ as well as /images/thumbnail/. 
 4. Run a script that deploys all the photos except /images/pre_published/ to s3.
