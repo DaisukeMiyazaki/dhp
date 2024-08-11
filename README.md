@@ -19,7 +19,7 @@ Now you're site is live on https://your_cloud_front_url/index.html
 1. No server needs to run nor deployed to cloud, which can cut the cost of cloud and compute. (At the end of the day, no need to run a server if there's no request coming)
 2. Custom javascript can run on the client site to do necessary frontend stuff.
 3. Cost on cloud service only happens for your image storage and traffic as it should.
-
+4. Most likely you will use your pc anyways to edit your photos, so why not do the rest of the repetitive stuff as wel on your pc?
 
 # What Not To Do In This Repository
 I'd like to keep this repository as minimun as possible to a static HTML page for the site. No server deployment is aimed because that introduces another complex layer, such as preparing a hardware machine like EC2, installing OS and a server etc.
