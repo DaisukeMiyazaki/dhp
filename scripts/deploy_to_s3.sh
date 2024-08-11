@@ -1,2 +1,18 @@
 # /bin/bash
-# Run this script to deploy all the photos except /images/pre_published/ to s3.
+# Run this script to deploy images and index.html to S3 bucket.
+
+# The below is the list of files and directories that will be deployed to the S3 bucket.
+# images/thumbnail/
+# images/original/
+# index.html
+
+# The script takes an argument that represents the S3 bucket endpoint.
+# usage: ./deploy_to_s3.sh <S3_BUCKET_ENDPOINT>
+
+readonly ENDPOINT=${1}
+
+aws s3 cp images/thumbnail/ s3://$ENDPOINT/images/thumbnail --recursive
+aws s3 cp images/original/ s3://$ENDPOINT/images/original --recursive
+aws s3 cp index.html s3://$ENDPOINT/index.html
+
+echo "Deployment completed."
