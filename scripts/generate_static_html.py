@@ -21,7 +21,9 @@ html_template = """<!DOCTYPE html>
   <p class="text-center mt-4 text-gray-500">@dreamhouseproject.net</p> 
 
 </body>
-</html>"""
+</html>
+<script src="enlargeImageOnClick.js" type="text/javascript"></script>
+"""
 
 # process all images in the thumbnail directory
 image_tags = ""

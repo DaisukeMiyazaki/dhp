@@ -19,4 +19,6 @@ aws s3 cp images/thumbnail/index.html s3://$ENDPOINT/images/thumbnail/index.html
 aws s3 cp images/original/index.html s3://$ENDPOINT/images/original/index.html
 aws s3 cp index.html s3://$ENDPOINT/index.html
 
+aws s3 cp enlargeImageOnClick.js s3://$ENDPOINT/enlargeImageOnClick.js
+
 echo "Deployment completed."
