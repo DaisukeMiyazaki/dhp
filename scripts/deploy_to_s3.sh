@@ -13,6 +13,10 @@ readonly ENDPOINT=${1}
 
 aws s3 cp images/thumbnail/ s3://$ENDPOINT/images/thumbnail --recursive
 aws s3 cp images/original/ s3://$ENDPOINT/images/original --recursive
+
+aws s3 cp images/index.html s3://$ENDPOINT/images/index.html
+aws s3 cp images/thumbnail/index.html s3://$ENDPOINT/images/thumbnail/index.html
+aws s3 cp images/original/index.html s3://$ENDPOINT/images/original/index.html
 aws s3 cp index.html s3://$ENDPOINT/index.html
 
 echo "Deployment completed."
