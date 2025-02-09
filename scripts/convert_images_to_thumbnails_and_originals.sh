@@ -38,3 +38,14 @@ for file in "$ORIGINAL_DIR"*; do
     echo "Created thumbnail: $thumbnail_file"
 done
 echo "Thumbnail creation complete."
+
+# call python generate_static_html.py
+echo "Generating static HTML..."
+# check python is installed
+if ! command -v python &> /dev/null; then
+    echo "python could not be found"
+    exit 1
+fi
+
+python3 ./scripts/generate_static_html.py
+
