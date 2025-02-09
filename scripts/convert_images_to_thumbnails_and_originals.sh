@@ -1,41 +1,40 @@
 #!/bin/bash
-# Run this script to convert the images under /images/pre_published/ to 
-# images/thumbnails and move the pre_published images to /images/original
+# このスクリプトは、./images/original/ に存在する画像ファイルに対して、
+# 対応するサムネイル画像が ./images/original/thumbnail/ に存在しない場合に、
+# ImageMagick を利用してサムネイルを作成します。
+#
+# ※ すでに original と thumbnail に同名の画像がある場合は、その画像はスキップされます。
 
-# Usage: ./scripts/convert_images_to_thumbnails_and_originals.sh ./images/pre_published/ ./images/thumbnail/
-# this script requires imagemagick to be installed.
-# https://imagemagick.org/
+# original ディレクトリは固定
+readonly ORIGINAL_DIR="./images/original/"
 
-readonly IMAGE_DIR=${1}
-echo "IMAGE_DIR: $IMAGE_DIR"
+# サムネイル出力ディレクトリは固定（./images/original/thumbnail/）とする
+readonly THUMBNAIL_DIR="./images/thumbnail/"
 
-readonly THUMBNAIL_DIR=${2}
-echo "THUMBNAIL_DIR: $THUMBNAIL_DIR"
+# THUMBNAIL_DIR が存在しない場合は作成
+mkdir -p "$THUMBNAIL_DIR"
 
 THUMBNAIL_SIZE="400x400"
-
-# compression quality
+# 圧縮品質（100 は劣化なし）
 QUALITY=100
 
+echo "Creating thumbnails for images in $ORIGINAL_DIR"
+for file in "$ORIGINAL_DIR"*; do
+    # ファイル以外（ディレクトリなど）はスキップ
+    [ -f "$file" ] || continue
 
-echo "Creating thumbnails for images in $IMAGE_DIR"
-for file in "$IMAGE_DIR"*; do
+    basefile=$(basename "$file")
+    thumbnail_file="${THUMBNAIL_DIR}${basefile}"
+
+    # サムネイルファイルが既に存在すればスキップする
+    if [ -f "$thumbnail_file" ]; then
+        echo "Thumbnail already exists for $basefile, skipping."
+        continue
+    fi
+
     echo "Processing file: $file"
-    extension="${file##*.}"
-    echo "extension: $extension"
-
-    # thumbnail file name is the same as the original file name
-    thumbnail_file="${THUMBNAIL_DIR}${file##*/}"
-
-    # generate thumbnail here
+    # サムネイルを作成
     magick "$file" -resize "$THUMBNAIL_SIZE" -quality $QUALITY "$thumbnail_file"
-
     echo "Created thumbnail: $thumbnail_file"
 done
 echo "Thumbnail creation complete."
-
-echo "Moving images from $IMAGE_DIR to original directory"
-for file in "$IMAGE_DIR"*; do
-    echo "Moving file: $file"
-    mv "$file" ./images/original/
-done
