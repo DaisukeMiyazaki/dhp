@@ -42,8 +42,8 @@ echo "Thumbnail creation complete."
 # call python generate_static_html.py
 echo "Generating static HTML..."
 # check python is installed
-if ! command -v python &> /dev/null; then
-    echo "python could not be found"
+if ! command -v python3 &> /dev/null; then
+    echo "python3 could not be found"
     exit 1
 fi
 
